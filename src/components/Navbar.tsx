@@ -309,7 +309,7 @@ const Navbar = () => {
             className="flex items-center gap-2.5 focus:outline-none"
           >
             <img
-              src="public/yaya_logo1.png"
+              src="/yaya_logo1.png"
               alt="YAYA Apparel"
               style={{
                 height: 30,
