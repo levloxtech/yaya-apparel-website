@@ -27,26 +27,69 @@ const desc: Record<Category, string> = {
 };
 
 const headings: Record<Category, [string, string]> = {
-  traditional: ["Ethnic",  "Wear"],      // shows as "Ethnic Wear"
-  modern:      ["Modern",  "Style"],     // shows as "Modern Style"  
-  casual:      ["Casual",  "Fusion"],    // shows as "Casual Fusion"
+  traditional: ["Ethnic",  "Wear"],
+  modern:      ["Modern",  "Style"],
+  casual:      ["Casual",  "Fusion"],
 };
 
-const floats = [
-  { id:"f1",  src:"https://i.pinimg.com/736x/a7/9d/f9/a79df9064a5eaa1f4eaffa470af7a15d.jpg", pos:{ top:"6%",    left:"0.5%"  }, w:112, h:148, rot:"-7deg", anim:"fA", del:"0s",   z:2, mob:true  },
-  { id:"f2",  src:"https://i.pinimg.com/1200x/53/03/93/530393321789ba3f41d429d30e8c03e6.jpg",pos:{ top:"32%",   left:"5%"    }, w:96,  h:128, rot:"5deg",  anim:"fB", del:"1.2s", z:2, mob:false },
-  { id:"f3",  src:"https://i.pinimg.com/736x/e9/f5/a4/e9f5a48be54e852c995bc614bf314c3d.jpg",pos:{ top:"58%",   left:"0.5%"  }, w:104, h:138, rot:"-4deg", anim:"fC", del:"0.4s", z:2, mob:true  },
-  { id:"f4",  src:"https://i.pinimg.com/736x/3d/a4/af/3da4af947dc96ead8578dc90dcb29e52.jpg", pos:{ top:"78%",   left:"6%"    }, w:90,  h:120, rot:"6deg",  anim:"fA", del:"2s",   z:2, mob:false },
-  { id:"f5",  src:"https://i.pinimg.com/736x/86/67/90/866790ba772a525955be08a7a98a4b64.jpg",pos:{ bottom:"2%", left:"1%"    }, w:106, h:142, rot:"-3deg", anim:"fB", del:"0.8s", z:2, mob:false },
-  { id:"f6",  src:"https://i.pinimg.com/736x/51/a5/47/51a547607992e94ddf756fb940e9a165.jpg", pos:{ top:"5%",    right:"0.5%" }, w:114, h:152, rot:"6deg",  anim:"fC", del:"0.3s", z:2, mob:true  },
-  { id:"f7",  src:"https://i.pinimg.com/1200x/dd/3d/42/dd3d428eab538e751c2580de55c6897e.jpg",pos:{ top:"30%",   right:"5%"   }, w:96,  h:128, rot:"-5deg", anim:"fA", del:"1.5s", z:2, mob:false },
-  { id:"f8",  src:"https://i.pinimg.com/736x/f2/84/f3/f284f3d3cc05b770d318dc7b2ae8327b.jpg", pos:{ top:"55%",   right:"0.5%" }, w:104, h:138, rot:"4deg",  anim:"fB", del:"0.7s", z:2, mob:false },
-  { id:"f9",  src:"https://i.pinimg.com/736x/14/58/93/14589328e5df052261012b661f2afadb.jpg", pos:{ top:"75%",   right:"5%"   }, w:90,  h:120, rot:"-6deg", anim:"fC", del:"1.8s", z:2, mob:false },
-  { id:"f10", src:"https://i.pinimg.com/1200x/53/03/93/530393321789ba3f41d429d30e8c03e6.jpg",pos:{ bottom:"2%", right:"1%"   }, w:108, h:144, rot:"3deg",  anim:"fA", del:"1s",   z:2, mob:true  },
-  { id:"f11", src:"https://i.pinimg.com/1200x/e5/fd/9f/e5fd9f0f3ba73d8166b1eeba1534a122.jpg",pos:{ top:"20%",   left:"14%"   }, w:74,  h:98,  rot:"-3deg", anim:"fB", del:"2.4s", z:0, mob:false },
-  { id:"f12", src:"https://i.pinimg.com/736x/9c/7d/1c/9c7d1c00243e9ecb1e9aa2fc0aeed5c5.jpg", pos:{ bottom:"22%",left:"13%"  }, w:70,  h:92,  rot:"4deg",  anim:"fC", del:"1.6s", z:0, mob:false },
-  { id:"f13", src:"https://i.pinimg.com/1200x/c2/d7/e1/c2d7e19ef943ed64edf09468c372a4b2.jpg",pos:{ top:"19%",   right:"13%"  }, w:78,  h:102, rot:"3deg",  anim:"fA", del:"2.1s", z:0, mob:false },
-  { id:"f14", src:"https://i.pinimg.com/736x/7f/c1/b5/7fc1b51bf520e0d827fc22ff850d9e60.jpg", pos:{ bottom:"21%",right:"12%"  }, w:72,  h:96,  rot:"-4deg", anim:"fB", del:"0.9s", z:0, mob:false },
+// Desktop floats (unchanged)
+const desktopFloats = [
+  { id:"f1",  src:"https://i.pinimg.com/736x/a7/9d/f9/a79df9064a5eaa1f4eaffa470af7a15d.jpg", pos:{ top:"6%",    left:"0.5%"  }, w:112, h:148, rot:"-7deg", anim:"fA", del:"0s",   z:2 },
+  { id:"f2",  src:"https://i.pinimg.com/1200x/53/03/93/530393321789ba3f41d429d30e8c03e6.jpg",pos:{ top:"32%",   left:"5%"    }, w:96,  h:128, rot:"5deg",  anim:"fB", del:"1.2s", z:2 },
+  { id:"f3",  src:"https://i.pinimg.com/736x/e9/f5/a4/e9f5a48be54e852c995bc614bf314c3d.jpg",pos:{ top:"58%",   left:"0.5%"  }, w:104, h:138, rot:"-4deg", anim:"fC", del:"0.4s", z:2 },
+  { id:"f4",  src:"https://i.pinimg.com/736x/3d/a4/af/3da4af947dc96ead8578dc90dcb29e52.jpg", pos:{ top:"78%",   left:"6%"    }, w:90,  h:120, rot:"6deg",  anim:"fA", del:"2s",   z:2 },
+  { id:"f5",  src:"https://i.pinimg.com/736x/86/67/90/866790ba772a525955be08a7a98a4b64.jpg",pos:{ bottom:"2%", left:"1%"    }, w:106, h:142, rot:"-3deg", anim:"fB", del:"0.8s", z:2 },
+  { id:"f6",  src:"https://i.pinimg.com/736x/51/a5/47/51a547607992e94ddf756fb940e9a165.jpg", pos:{ top:"5%",    right:"0.5%" }, w:114, h:152, rot:"6deg",  anim:"fC", del:"0.3s", z:2 },
+  { id:"f7",  src:"https://i.pinimg.com/1200x/dd/3d/42/dd3d428eab538e751c2580de55c6897e.jpg",pos:{ top:"30%",   right:"5%"   }, w:96,  h:128, rot:"-5deg", anim:"fA", del:"1.5s", z:2 },
+  { id:"f8",  src:"https://i.pinimg.com/736x/f2/84/f3/f284f3d3cc05b770d318dc7b2ae8327b.jpg", pos:{ top:"55%",   right:"0.5%" }, w:104, h:138, rot:"4deg",  anim:"fB", del:"0.7s", z:2 },
+  { id:"f9",  src:"https://i.pinimg.com/736x/14/58/93/14589328e5df052261012b661f2afadb.jpg", pos:{ top:"75%",   right:"5%"   }, w:90,  h:120, rot:"-6deg", anim:"fC", del:"1.8s", z:2 },
+  { id:"f10", src:"https://i.pinimg.com/1200x/53/03/93/530393321789ba3f41d429d30e8c03e6.jpg",pos:{ bottom:"2%", right:"1%"   }, w:108, h:144, rot:"3deg",  anim:"fA", del:"1s",   z:2 },
+  { id:"f11", src:"https://i.pinimg.com/1200x/e5/fd/9f/e5fd9f0f3ba73d8166b1eeba1534a122.jpg",pos:{ top:"20%",   left:"14%"   }, w:74,  h:98,  rot:"-3deg", anim:"fB", del:"2.4s", z:0 },
+  { id:"f12", src:"https://i.pinimg.com/736x/9c/7d/1c/9c7d1c00243e9ecb1e9aa2fc0aeed5c5.jpg", pos:{ bottom:"22%",left:"13%"  }, w:70,  h:92,  rot:"4deg",  anim:"fC", del:"1.6s", z:0 },
+  { id:"f13", src:"https://i.pinimg.com/1200x/c2/d7/e1/c2d7e19ef943ed64edf09468c372a4b2.jpg",pos:{ top:"19%",   right:"13%"  }, w:78,  h:102, rot:"3deg",  anim:"fA", del:"2.1s", z:0 },
+  { id:"f14", src:"https://i.pinimg.com/736x/7f/c1/b5/7fc1b51bf520e0d827fc22ff850d9e60.jpg", pos:{ bottom:"21%",right:"12%"  }, w:72,  h:96,  rot:"-4deg", anim:"fB", del:"0.9s", z:0 },
+];
+
+// Mobile floats — 6 images evenly placed: 3 left, 3 right
+const mobileFloats = [
+  // LEFT COLUMN — top / mid / bottom
+  {
+    id: "mf1",
+    src: "https://i.pinimg.com/736x/a7/9d/f9/a79df9064a5eaa1f4eaffa470af7a15d.jpg",
+    style: { top: "4%", left: "0px" },
+    w: 72, h: 96, rot: "-6deg", anim: "fA", del: "0s",
+  },
+  {
+    id: "mf2",
+    src: "https://i.pinimg.com/736x/e9/f5/a4/e9f5a48be54e852c995bc614bf314c3d.jpg",
+    style: { top: "38%", left: "0px" },
+    w: 68, h: 90, rot: "4deg", anim: "fB", del: "0.9s",
+  },
+  {
+    id: "mf3",
+    src: "https://i.pinimg.com/736x/86/67/90/866790ba772a525955be08a7a98a4b64.jpg",
+    style: { bottom: "6%", left: "0px" },
+    w: 70, h: 94, rot: "-3deg", anim: "fC", del: "1.6s",
+  },
+  // RIGHT COLUMN — top / mid / bottom
+  {
+    id: "mf4",
+    src: "https://i.pinimg.com/736x/51/a5/47/51a547607992e94ddf756fb940e9a165.jpg",
+    style: { top: "4%", right: "0px" },
+    w: 72, h: 96, rot: "6deg", anim: "fC", del: "0.4s",
+  },
+  {
+    id: "mf5",
+    src: "https://i.pinimg.com/736x/f2/84/f3/f284f3d3cc05b770d318dc7b2ae8327b.jpg",
+    style: { top: "38%", right: "0px" },
+    w: 68, h: 90, rot: "-5deg", anim: "fA", del: "1.3s",
+  },
+  {
+    id: "mf6",
+    src: "https://i.pinimg.com/1200x/53/03/93/530393321789ba3f41d429d30e8c03e6.jpg",
+    style: { bottom: "6%", right: "0px" },
+    w: 70, h: 94, rot: "3deg", anim: "fB", del: "2s",
+  },
 ];
 
 const LetterReveal = ({ text, delay=0, trigger, cls, style }:
@@ -109,8 +152,6 @@ export default function HeroSection() {
     setTimeout(()=>{ setActive(c); setTimeout(()=>setTrans(false),60); }, 280);
   }, [active, trans]);
 
-  const show = mobile ? floats.filter(f=>f.mob) : floats;
-
   return (
     <section style={{ position:"relative", minHeight:"100svh", width:"100%", overflow:"hidden", background:"#f4f1ec" }}>
       <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Jost:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
@@ -144,7 +185,6 @@ export default function HeroSection() {
           background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
           background-size:200px}
 
-        /* Vertical side pill on desktop */
         .side-pill{
           position:absolute;
           top:50%;left:-56px;
@@ -159,9 +199,6 @@ export default function HeroSection() {
 
         @media(max-width:767px){
           .sp{display:none!important}
-          .yb{font-size:clamp(70px,17vw,150px)!important}
-        }
-        @media(max-width:480px){
           .yb{font-size:clamp(60px,15vw,120px)!important}
         }
       `}</style>
@@ -174,36 +211,53 @@ export default function HeroSection() {
       <div style={{ position:"absolute",bottom:"-10%",left:"0",width:700,height:700,borderRadius:"50%",pointerEvents:"none",background:`radial-gradient(circle,${rgba(.07)} 0%,transparent 65%)`,transition:"background 1s",zIndex:0 }}/>
       <div style={{ position:"absolute",inset:0,pointerEvents:"none",zIndex:0,backgroundImage:`linear-gradient(rgba(0,0,0,.008) 1px,transparent 1px),linear-gradient(90deg,rgba(0,0,0,.008) 1px,transparent 1px)`,backgroundSize:"80px 80px" }}/>
 
-      {/* Inner floats z:0 */}
-      {show.filter(f=>f.z===0).map(f=>(
-        <div key={f.id} className="fi" style={{ ...f.pos,width:f.w,height:f.h,["--r" as string]:`rotate(${f.rot})`,zIndex:0,animation:`${f.anim} ${f.anim==="fA"?"9":f.anim==="fB"?"10.5":"8"}s ease-in-out infinite ${f.del}`,opacity:.28,filter:"drop-shadow(0 8px 18px rgba(0,0,0,.09))" } as React.CSSProperties}>
-          <img src={f.src} alt=""/>
-        </div>
-      ))}
+      {/* ── DESKTOP FLOATS ── */}
+      {!mobile && (
+        <>
+          {desktopFloats.filter(f=>f.z===0).map(f=>(
+            <div key={f.id} className="fi" style={{ ...f.pos,width:f.w,height:f.h,["--r" as string]:`rotate(${f.rot})`,zIndex:0,animation:`${f.anim} ${f.anim==="fA"?"9":f.anim==="fB"?"10.5":"8"}s ease-in-out infinite ${f.del}`,opacity:.28,filter:"drop-shadow(0 8px 18px rgba(0,0,0,.09))" } as React.CSSProperties}>
+              <img src={f.src} alt=""/>
+            </div>
+          ))}
+          {desktopFloats.filter(f=>f.z===2).map(f=>(
+            <div key={f.id} className="fi" style={{ ...f.pos,width:f.w,height:f.h,["--r" as string]:`rotate(${f.rot})`,zIndex:2,animation:`${f.anim} ${f.anim==="fA"?"8.5":f.anim==="fB"?"10":"7.8"}s ease-in-out infinite ${f.del}`,opacity:["f1","f5","f6","f10"].includes(f.id)?0.88:0.72,filter:`drop-shadow(0 ${f.w>100?18:10}px ${f.w>100?38:22}px rgba(0,0,0,.16))` } as React.CSSProperties}>
+              <img src={f.src} alt=""/>
+            </div>
+          ))}
+        </>
+      )}
 
-      {/* Outer floats z:2 */}
-      {show.filter(f=>f.z===2).map(f=>(
-        <div key={f.id} className="fi" style={{ ...f.pos,width:f.w,height:f.h,["--r" as string]:`rotate(${f.rot})`,zIndex:2,animation:`${f.anim} ${f.anim==="fA"?"8.5":f.anim==="fB"?"10":"7.8"}s ease-in-out infinite ${f.del}`,opacity:["f1","f5","f6","f10"].includes(f.id)?0.88:0.72,filter:`drop-shadow(0 ${f.w>100?18:10}px ${f.w>100?38:22}px rgba(0,0,0,.16))` } as React.CSSProperties}>
+      {/* ── MOBILE FLOATS — 3 left, 3 right, evenly spaced ── */}
+      {mobile && mobileFloats.map(f=>(
+        <div
+          key={f.id}
+          className="fi"
+          style={{
+            ...f.style,
+            width: f.w,
+            height: f.h,
+            ["--r" as string]: `rotate(${f.rot})`,
+            zIndex: 2,
+            animation: `${f.anim} ${f.anim==="fA"?"8.5":f.anim==="fB"?"10":"7.8"}s ease-in-out infinite ${f.del}`,
+            opacity: 0.75,
+            filter: "drop-shadow(0 10px 24px rgba(0,0,0,.14))",
+          } as React.CSSProperties}
+        >
           <img src={f.src} alt=""/>
         </div>
       ))}
 
       {/* ══ CONTENT z:10 ══ */}
-      <div style={{ position:"relative",zIndex:10,minHeight:"100svh",display:"flex",flexDirection:"column" }}>
+      <div style={{ position:"relative", zIndex:10, minHeight:"100svh", display:"flex", flexDirection:"column" }}>
 
         {/* ── DESKTOP ── */}
         {!mobile ? (
-          /*
-            Full-height grid — image takes all available vertical space.
-            No bottom CTA bar with heading text (removed as requested).
-            Buttons sit at the very bottom of the grid inside the layout.
-          */
           <div style={{
             flex: 1,
             display: "grid",
             gridTemplateColumns: "1fr 1.8fr 1fr",
             gap: 0,
-            alignItems: "stretch",   /* stretch so columns fill full height */
+            alignItems: "stretch",
             padding: "0 13%",
             width: "100%",
             minHeight: "100svh",
@@ -245,7 +299,6 @@ export default function HeroSection() {
                 </div>
               </FadeUp>
 
-              {/* Stats */}
               <FadeUp delay={340} trigger={active}>
                 <div style={{ display:"flex",flexDirection:"column",gap:12,alignItems:"flex-end",marginTop:8 }}>
                   {[{n:"200+",l:"Styles"},{n:"50+",l:"Countries"},{n:"12+",l:"Years"}].map(s=>(
@@ -258,48 +311,19 @@ export default function HeroSection() {
               </FadeUp>
             </div>
 
-            {/* CENTER — image fills full height of viewport */}
-            <div style={{
-              position: "relative",
-              width: "100%",
-              /* Takes full viewport height — biggest possible */
-              height: "100svh",
-              display: "flex",
-              alignItems: "flex-end",
-              justifyContent: "center",
-            }}>
-              {/* Vertical pill — left side */}
-              <div
-                className="side-pill"
-                style={{ color:ac, background:rgba(.10), border:`1px solid ${rgba(.20)}`, transition:"color .7s,background .7s,border-color .7s" }}
-              >
+            {/* CENTER */}
+            <div style={{ position:"relative", width:"100%", height:"100svh", display:"flex", alignItems:"flex-end", justifyContent:"center" }}>
+              <div className="side-pill" style={{ color:ac, background:rgba(.10), border:`1px solid ${rgba(.20)}`, transition:"color .7s,background .7s,border-color .7s" }}>
                 {cat.dressType}
               </div>
-
-              {/* Glow halos */}
               <div style={{ position:"absolute",bottom:"2%",left:"50%",width:"55%",height:"40%",borderRadius:"50%",background:`radial-gradient(ellipse,${rgba(.32)} 0%,transparent 68%)`,transition:"background .9s",zIndex:1,animation:"gp 4s ease-in-out infinite" }}/>
               <div style={{ position:"absolute",bottom:"-2%",left:"50%",transform:"translateX(-50%)",width:"88%",height:"52%",borderRadius:"50%",background:`radial-gradient(ellipse,${rgba(.08)} 0%,transparent 65%)`,transition:"background .9s",zIndex:1 }}/>
               <div style={{ position:"absolute",bottom:"4%",left:"50%",transform:"translateX(-50%)",width:"42%",height:"5px",borderRadius:"50%",background:`radial-gradient(ellipse,${rgba(.35)} 0%,transparent 70%)`,filter:"blur(5px)",zIndex:1,transition:"background .9s" }}/>
-
-              {/* Hero PNG — fills full column height */}
               <img
                 key={`${active}-${imgIdx}`}
                 src={heroImg}
                 alt={active}
-                style={{
-                  /* Full height of the column */
-                  height: "85%",
-                  width: "auto",
-                  objectFit: "contain",
-                  objectPosition: "bottom",
-                  position: "relative",
-                  zIndex: 5,
-                  maxWidth: "100%",
-                  opacity: trans ? 0 : 1,
-                  transform: trans ? "scale(.87) translateY(18px)" : "scale(1) translateY(0)",
-                  transition: "opacity .38s ease,transform .38s ease",
-                  filter: `drop-shadow(0 30px 60px rgba(0,0,0,.22)) drop-shadow(0 0 34px ${rgba(.16)})`,
-                }}
+                style={{ height:"85%",width:"auto",objectFit:"contain",objectPosition:"bottom",position:"relative",zIndex:5,maxWidth:"100%",opacity:trans?0:1,transform:trans?"scale(.87) translateY(18px)":"scale(1) translateY(0)",transition:"opacity .38s ease,transform .38s ease",filter:`drop-shadow(0 30px 60px rgba(0,0,0,.22)) drop-shadow(0 0 34px ${rgba(.16)})` }}
               />
             </div>
 
@@ -308,7 +332,7 @@ export default function HeroSection() {
               <FadeUp delay={0} trigger={active}>
                 <div>
                   <div style={{ fontFamily:"'Jost',sans-serif",fontSize:"9.5px",fontWeight:700,letterSpacing:".44em",textTransform:"uppercase",color:ac,marginBottom:10,transition:"color .7s" }}>
-                    YAYA Brand
+                    YAYA APPAREL
                   </div>
                   <div style={{ fontFamily:"'Playfair Display',serif",fontSize:28,fontWeight:600,color:"#0d0b08",lineHeight:1.18 }}>
                     Premium Quality
@@ -325,7 +349,6 @@ export default function HeroSection() {
                 </div>
               </FadeUp>
 
-              {/* CTA buttons — now in right panel, not in a separate bottom bar */}
               <FadeUp delay={260} trigger={active}>
                 <div style={{ display:"flex",flexDirection:"column",gap:10,width:"100%" }}>
                   <button
@@ -346,7 +369,6 @@ export default function HeroSection() {
                 </div>
               </FadeUp>
 
-              {/* Dots */}
               <FadeUp delay={340} trigger={active}>
                 <div style={{ display:"flex",gap:9 }}>
                   {categories.map(c=>(
@@ -368,16 +390,27 @@ export default function HeroSection() {
 
         ) : (
           /* ── MOBILE ── */
-          <div style={{ flex:1, display:"flex", flexDirection:"column", alignItems:"center", padding:"20px 20px 0", minHeight:"100svh" }}>
+          <div style={{
+            flex: 1,
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            // Horizontal padding accounts for the float columns (72px wide) + a small gap
+            paddingLeft: 80,
+            paddingRight: 80,
+            paddingTop: 20,
+            paddingBottom: 0,
+            minHeight: "100svh",
+          }}>
 
-            {/* Top row: category + dots */}
-            <div style={{ width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:12 }}>
+            {/* Category label + dots */}
+            <div style={{ width:"100%",display:"flex",alignItems:"center",justifyContent:"space-between",marginBottom:10 }}>
               <FadeUp delay={0} trigger={active}>
                 <div>
                   <div style={{ fontFamily:"'Jost',sans-serif",fontSize:"9px",fontWeight:700,letterSpacing:".44em",textTransform:"uppercase",color:ac,marginBottom:3,transition:"color .7s" }}>
                     {cat.dressType}
                   </div>
-                  <div style={{ fontFamily:"'Playfair Display',serif",fontSize:19,fontWeight:600,color:"#0d0b08",lineHeight:1.1 }}>
+                  <div style={{ fontFamily:"'Playfair Display',serif",fontSize:17,fontWeight:600,color:"#0d0b08",lineHeight:1.1 }}>
                     {cat.label}
                   </div>
                 </div>
@@ -389,42 +422,42 @@ export default function HeroSection() {
               </div>
             </div>
 
-            {/* Hero image — tall, fills most of screen */}
-            <div style={{ position:"relative",width:"100%",flex:1,minHeight:"55vh",maxHeight:"68vh",display:"flex",alignItems:"flex-end",justifyContent:"center" }}>
+            {/* Hero image */}
+            <div style={{ position:"relative",width:"100%",flex:1,minHeight:"48vh",maxHeight:"58vh",display:"flex",alignItems:"flex-end",justifyContent:"center" }}>
               <div style={{ position:"absolute",bottom:0,left:"50%",transform:"translateX(-50%)",width:"80%",height:"55%",borderRadius:"50%",background:`radial-gradient(ellipse,${rgba(.26)} 0%,transparent 70%)`,zIndex:1,animation:"gp 4s ease-in-out infinite" }}/>
               <img
                 key={`${active}-${imgIdx}-m`}
                 src={heroImg}
                 alt={active}
-                style={{ height:"100%",width:"auto",objectFit:"contain",objectPosition:"bottom",position:"relative",zIndex:2,maxWidth:"82%",opacity:trans?0:1,transform:trans?"scale(.88) translateY(14px)":"scale(1) translateY(0)",transition:"opacity .38s ease,transform .38s ease",filter:`drop-shadow(0 14px 32px rgba(0,0,0,.17)) drop-shadow(0 0 22px ${rgba(.13)})` }}
+                style={{ height:"100%",width:"auto",objectFit:"contain",objectPosition:"bottom",position:"relative",zIndex:2,maxWidth:"100%",opacity:trans?0:1,transform:trans?"scale(.88) translateY(14px)":"scale(1) translateY(0)",transition:"opacity .38s ease,transform .38s ease",filter:`drop-shadow(0 14px 32px rgba(0,0,0,.17)) drop-shadow(0 0 22px ${rgba(.13)})` }}
               />
             </div>
 
             {/* Heading */}
-            <div style={{ textAlign:"center",lineHeight:.9,width:"100%",marginTop:12,marginBottom:10 }}>
-              <h1 style={{ fontFamily:"'Playfair Display',serif",fontSize:"clamp(38px,10vw,64px)",fontWeight:700,color:"#0d0b08",letterSpacing:"-0.02em" }}>
+            <div style={{ textAlign:"center",lineHeight:.9,width:"100%",marginTop:10,marginBottom:8 }}>
+              <h1 style={{ fontFamily:"'Playfair Display',serif",fontSize:"clamp(32px,9vw,56px)",fontWeight:700,color:"#0d0b08",letterSpacing:"-0.02em" }}>
                 <LetterReveal text={hl} delay={0} trigger={active}/>
               </h1>
-              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:"clamp(38px,10vw,64px)",fontWeight:700,color:ac,letterSpacing:"-0.02em",transition:"color .7s" }}>
+              <h2 style={{ fontFamily:"'Playfair Display',serif",fontSize:"clamp(32px,9vw,56px)",fontWeight:700,color:ac,letterSpacing:"-0.02em",transition:"color .7s" }}>
                 <LetterReveal text={hr} delay={110} trigger={active}/>
               </h2>
             </div>
 
             {/* Description */}
-            <FadeUp delay={180} trigger={active} style={{ width:"100%",marginBottom:14 }}>
-              <p style={{ fontFamily:"'Playfair Display',serif",fontSize:13.5,lineHeight:1.7,color:"#2c2820",fontWeight:400,textAlign:"center",fontStyle:"italic" }}>
+            <FadeUp delay={180} trigger={active} style={{ width:"100%",marginBottom:12 }}>
+              <p style={{ fontFamily:"'Playfair Display',serif",fontSize:12.5,lineHeight:1.65,color:"#2c2820",fontWeight:400,textAlign:"center",fontStyle:"italic" }}>
                 {desc[active]}
               </p>
             </FadeUp>
 
             {/* Buttons */}
-            <FadeUp delay={260} trigger={active} style={{ width:"100%",marginBottom:20 }}>
-              <div style={{ display:"flex",flexDirection:"column",gap:10,width:"100%" }}>
-                <button style={{ fontFamily:"'Jost',sans-serif",fontSize:"11px",fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",padding:"13px 26px",border:"none",borderRadius:"6px",background:`linear-gradient(135deg,${ac},${rgba(.78)})`,color:"#fff",cursor:"pointer",transition:"all .3s",boxShadow:`0 10px 26px ${rgba(.26)}` }}>
+            <FadeUp delay={260} trigger={active} style={{ width:"100%",marginBottom:16 }}>
+              <div style={{ display:"flex",flexDirection:"column",gap:9,width:"100%" }}>
+                <button style={{ fontFamily:"'Jost',sans-serif",fontSize:"10px",fontWeight:700,letterSpacing:".22em",textTransform:"uppercase",padding:"12px 20px",border:"none",borderRadius:"6px",background:`linear-gradient(135deg,${ac},${rgba(.78)})`,color:"#fff",cursor:"pointer",transition:"all .3s",boxShadow:`0 10px 26px ${rgba(.26)}` }}>
                   Explore Collection
                 </button>
                 <button
-                  style={{ fontFamily:"'Jost',sans-serif",fontSize:"11px",fontWeight:600,letterSpacing:".22em",textTransform:"uppercase",padding:"11px 26px",border:`1.5px solid ${ac}`,borderRadius:"6px",background:"transparent",color:ac,cursor:"pointer",transition:"all .3s" }}
+                  style={{ fontFamily:"'Jost',sans-serif",fontSize:"10px",fontWeight:600,letterSpacing:".22em",textTransform:"uppercase",padding:"10px 20px",border:`1.5px solid ${ac}`,borderRadius:"6px",background:"transparent",color:ac,cursor:"pointer",transition:"all .3s" }}
                   onClick={()=>{ const i=categories.findIndex(c=>c.key===active); go(categories[(i+1)%categories.length].key); }}
                 >
                   Next Look →
@@ -432,7 +465,7 @@ export default function HeroSection() {
               </div>
             </FadeUp>
 
-            <span style={{ fontFamily:"'Jost',sans-serif",fontSize:"9.5px",fontWeight:500,letterSpacing:".36em",textTransform:"uppercase",color:rgba(.90),marginBottom:18 }}>
+            <span style={{ fontFamily:"'Jost',sans-serif",fontSize:"9px",fontWeight:500,letterSpacing:".36em",textTransform:"uppercase",color:rgba(.90),marginBottom:16 }}>
               YAYA Premium Collection
             </span>
           </div>

@@ -1,14 +1,28 @@
+User-agent: *
+Allow: /
+Allow: /collections
+Allow: /lookbook
+Allow: /blog
+Allow: /contact
+
+Disallow: /admin
+Disallow: /dashboard
+Disallow: /private
+Disallow: /api/
+Disallow: /*?filter=
+Disallow: /*?sort=
+Disallow: /*?page=
+
+Crawl-delay: 1
+
 User-agent: Googlebot
 Allow: /
+Crawl-delay: 0
 
 User-agent: Bingbot
 Allow: /
+Crawl-delay: 1
 
-User-agent: Twitterbot
-Allow: /
-
-User-agent: facebookexternalhit
-Allow: /
-
-User-agent: *
-Allow: /
+Sitemap: https://yayaapparel.com/sitemap.xml
+Sitemap: https://yayaapparel.com/sitemap-collections.xml
+Sitemap: https://yayaapparel.com/sitemap-blog.xml
