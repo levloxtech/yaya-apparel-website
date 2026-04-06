@@ -127,12 +127,18 @@ export default function ChatBot() {
               if (tooltipTimeoutRef.current) clearTimeout(tooltipTimeoutRef.current)
             }}
             onMouseLeave={() => setShowChatbotTooltip(false)}
-            className="w-14 h-14 rounded-full shadow-lg flex items-center justify-center bg-gradient-to-br from-purple-500 to-pink-500 hover:opacity-90 transition-opacity"
+            className="w-14 h-14 rounded-full shadow-xl flex items-center justify-center 
+             bg-gradient-to-br from-purple-500 via-pink-500 to-red-500 
+             hover:scale-110 hover:shadow-2xl transition-all duration-300 relative"
           >
+            {!isOpen && (
+              <div className="absolute inset-0 rounded-full bg-purple-500 blur-xl opacity-40 animate-pulse"></div>
+            )}
+
             {isOpen ? (
-              <X size={24} className="text-white" />
+              <X size={24} className="text-white relative z-10" />
             ) : (
-              <span style={{ fontSize: '30px' }}>🤖</span>
+              <span className="text-white text-xl relative z-10">💬</span>
             )}
           </button>
         </div>
@@ -146,8 +152,8 @@ export default function ChatBot() {
           style={{ backgroundColor: '#25D366' }}
         >
           <svg viewBox="0 0 32 32" className="w-8 h-8">
-            <path d="M16 1C7.7 1 1 7.7 1 16c0 2.6.7 5.1 1.9 7.2L1 31l7.9-1.8A15 15 0 0016 31c8.3 0 15-6.7 15-15S24.3 1 16 1z" fill="#fff"/>
-            <path d="M16 3.5C8.8 3.5 3 9.3 3 16.5c0 2.4.6 4.6 1.8 6.5L3.5 28.5l5.7-1.8A12.5 12.5 0 0016 28.5c7.2 0 13-5.8 13-12S23.2 3.5 16 3.5z" fill="#25D366"/>
+            <path d="M16 1C7.7 1 1 7.7 1 16c0 2.6.7 5.1 1.9 7.2L1 31l7.9-1.8A15 15 0 0016 31c8.3 0 15-6.7 15-15S24.3 1 16 1z" fill="#fff" />
+            <path d="M16 3.5C8.8 3.5 3 9.3 3 16.5c0 2.4.6 4.6 1.8 6.5L3.5 28.5l5.7-1.8A12.5 12.5 0 0016 28.5c7.2 0 13-5.8 13-12S23.2 3.5 16 3.5z" fill="#25D366" />
           </svg>
         </a>
       </div>
@@ -167,11 +173,10 @@ export default function ChatBot() {
             <div className="flex-1 overflow-y-auto p-4 space-y-3">
               {messages.map((msg) => (
                 <div key={msg.id} className={`flex ${msg.sender === 'user' ? 'justify-end' : 'justify-start'}`}>
-                  <div className={`px-4 py-2 rounded-2xl text-sm ${
-                    msg.sender === 'user'
+                  <div className={`px-4 py-2 rounded-2xl text-sm ${msg.sender === 'user'
                       ? 'bg-purple-600 text-white'
                       : 'bg-gray-100'
-                  }`}>
+                    }`}>
                     {msg.text}
                   </div>
                 </div>
