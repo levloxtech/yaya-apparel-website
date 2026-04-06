@@ -174,7 +174,7 @@ const Navbar = () => {
             style={{ minWidth: "fit-content" }}
           >
             <img
-              src="public/yaya_logo1.png"
+              src="/yaya_logo1.png"
               alt="YAYA Apparel"
               style={{
                 height: scrolled ? 38 : 42,
