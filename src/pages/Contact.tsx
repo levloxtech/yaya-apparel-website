@@ -38,6 +38,7 @@ const Contact = () => {
   const [focused, setFocused] = useState<string | null>(null);
   const [sent,    setSent]    = useState(false);
   const [sending, setSending] = useState(false);
+  const [error,   setError]   = useState("");
 
   // ✨ Premium Unified Palette ✨
   const RICH_GOLD  = "#b38a22"; 
@@ -47,10 +48,50 @@ const Contact = () => {
   const BG_CREAM   = "#faf9f6";
   const BG2        = "#f2efe8";
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError("");
     setSending(true);
-    setTimeout(() => { setSending(false); setSent(true); }, 1400);
+
+    try {
+      // Call backend to send email via Resend
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL || 'http://localhost:5000'}/api/contact`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({
+            name: form.name,
+            email: form.email,
+            phone: form.phone,
+            message: form.message,
+          }),
+        }
+      );
+
+      const data = await response.json();
+
+      if (!response.ok) {
+        throw new Error(data.error || 'Failed to send message');
+      }
+
+      // Success
+      setSending(false);
+      setSent(true);
+      setForm({ name: "", email: "", phone: "", message: "" });
+
+      // Reset after 3 seconds
+      setTimeout(() => {
+        setSent(false);
+      }, 3000);
+
+    } catch (err) {
+      console.error('Form error:', err);
+      setError(err instanceof Error ? err.message : 'Failed to send message. Please try again.');
+      setSending(false);
+    }
   };
 
   const inputStyle = (field: string): React.CSSProperties => ({
@@ -120,6 +161,22 @@ const Contact = () => {
           border-color: rgba(179,138,34,0.35);
         }
         input::placeholder, textarea::placeholder { color: rgba(90,82,72,0.38); }
+        .error-message {
+          color: #d32f2f;
+          background: #ffebee;
+          border: 1px solid #ef5350;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-size: 14px;
+        }
+        .success-message {
+          color: #1b5e20;
+          background: #e8f5e9;
+          border: 1px solid #4caf50;
+          padding: 12px 16px;
+          border-radius: 8px;
+          font-size: 14px;
+        }
 
         @media (max-width: 767px) {
           .ct-grid { grid-template-columns: 1fr !important; gap: 36px !important; }
@@ -253,7 +310,7 @@ const Contact = () => {
                 </span>
               </div>
               <p style={{ fontFamily:"'Cormorant Garamond',serif", fontSize:18, fontWeight:500, color:DARK, marginBottom:4, lineHeight:1.4 }}>
-                Trichy, Tamil Nadu {/* ✨ Fixed Location! ✨ */}
+                Trichy, Tamil Nadu
               </p>
               <p style={{ fontFamily:"'Jost',sans-serif", fontSize:"13px", fontWeight:400, color:MUTED }}>
                 India's premium fashion destination
@@ -360,6 +417,13 @@ const Contact = () => {
                     </span>
                   </div>
 
+                  {/* Error message */}
+                  {error && (
+                    <div className="error-message">
+                      ⚠️ {error}
+                    </div>
+                  )}
+
                   {/* Name */}
                   <div>
                     <label style={labelStyle}>Your Name</label>
@@ -430,7 +494,7 @@ const Contact = () => {
                       letterSpacing:"0.28em",
                       textTransform:"uppercase",
                       padding:"16px 32px",
-                      background: sending ? `rgba(24,22,15,0.6)` : DARK, /* ✨ Updated to Solid Dark Stone ✨ */
+                      background: sending ? `rgba(24,22,15,0.6)` : DARK,
                       color:"#fff",
                       border:"none",
                       borderRadius:7,
@@ -477,7 +541,7 @@ const Contact = () => {
           </a>
           <div style={{ width:4, height:4, borderRadius:"50%", background:`rgba(179,138,34,0.5)` }}/>
           <span style={{ fontFamily:"'Jost',sans-serif", fontSize:"12px", fontWeight:500, letterSpacing:"0.18em", color:DARK_STONE }}>
-            Trichy, Tamil Nadu {/* ✨ Fixed Location ✨ */}
+            Trichy, Tamil Nadu
           </span>
         </div>
       </div>
