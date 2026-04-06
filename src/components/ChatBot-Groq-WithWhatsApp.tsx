@@ -117,7 +117,7 @@ export default function ChatBot() {
   return (
     <>
       {/* Floating Buttons Container */}
-      <div className="fixed bottom-6 right-4 z-40 flex flex-col gap-3 items-end">
+      <div className="fixed bottom-20 right-4 z-40 flex flex-col gap-3 items-end md:bottom-6">
 
         {/* Chatbot Button */}
         <div className="relative">
