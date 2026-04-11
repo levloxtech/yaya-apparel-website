@@ -154,7 +154,7 @@ const Navbar = () => {
       <nav
         className="hidden md:block fixed top-0 left-0 right-0 z-50"
         style={{
-          padding: scrolled ? "10px 0" : "14px 0",
+          padding: scrolled ? "10px 0 0 0" : "14px 0",
           background: scrolled 
             ? "rgba(255, 255, 255, 0.93)" 
             : "transparent",
