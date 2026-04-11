@@ -79,7 +79,7 @@ async function sendEmailWithResend(name, email, phone, message) {
     try {
         const response = await resend.emails.send({
             from: 'onboarding@resend.dev',
-            to: ['levloxtech@gmail.com'],
+            to: ['yayaapparel05@gmail.com'],
             subject: `New Contact from ${name}`,
             html: `
 <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f4f4; padding:20px; font-family: Arial, sans-serif;">
